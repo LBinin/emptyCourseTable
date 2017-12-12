@@ -1,0 +1,92 @@
+html,body {
+  margin: 0;
+  height: 100%;
+}
+body {
+  /* text-align: center; */
+}
+#info {
+  overflow: hidden;
+}
+.logo {
+  display: block;
+  margin: 20px auto 30px;
+  max-width: 208px;
+  width: 90%;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+.el-collapse-item__header {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  color: #666;
+}
+.none-tip {
+  font-size: 14px;
+  line-height: 70px;
+  text-align: center;
+  color: #555;
+}
+.create-btn {
+  width: 45%;
+  margin: 25px auto 20px;
+}
+.join-btn {
+  width: 45%;
+  float: right;
+  margin: 25px auto 20px;
+}
+.qr-code {
+  display: block;
+  width: 60%;
+  margin: 15px auto 10px;
+}
+.qrcode-tip {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+}
+.look-up {
+  margin: 15px auto 20px;
+  width: 100%;
+}
+.el-card {
+  max-width: 450px;
+  width: 90%;
+  margin: 0 auto 30px;
+}
+.el-card__header div > span {
+  font-size: 20px;
+  color: #555;
+  font-weight: bold;
+}
+.el-card__header {
+  border-bottom: 0;
+}
+.el-card__body {
+  padding-top: 10px;
+}
+.text.item {
+  color: #666;
+  font-size: 14px;
+  height: 35px;
+}
+.text.item span {
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: 0.6em;
+  user-select: text;
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  cursor: auto;
+}
+.copyright {
+  color: #999;
+  font-size: 15px;
+  text-align: center;
+  line-height: 50px;
+}

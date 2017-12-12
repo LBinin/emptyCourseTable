@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <title>组织空课表 - 空课表</title>
+  <link rel="shortcut icon" href="./images/favicon.ico">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <link rel="stylesheet" href="./css/courseTable.css">
+  <link rel="stylesheet" href="./css/common.css">
+</head>
+
+<body>
+  <div id="app">
+    <template>
+      <transition name="el-fade-in">
+        <div v-show="loaded">
+          <div class="title">
+            <div class="group-name">软件结构OBK课表Plus小组空课表</div>
+            组织编号: <span>{{ groupID }}</span>
+            当前人数: <span>{{ totalPerson }}</span>
+          </div>
+          <div class="members">当前成员:
+            <span>{{ members }}</span>
+          </div>
+          <div class="type-radio">
+            <el-radio-group v-model="tableType">
+              <el-radio-button label="emptyTable">空课表</el-radio-button>
+              <el-radio-button label="fullTable">有课表</el-radio-button>
+            </el-radio-group>
+          </div>
+          <div class="week-selector">
+            <el-select v-model="currWeek" placeholder="请选择查看周数">
+              <el-option v-for="week in 20" :key="week" :label="'第 ' + week + ' 周'" :value="week">
+              </el-option>
+            </el-select>
+          </div>
+          <el-table :data="courseInfo" highlight-current-row stripe border style="max-width: 1250px;width: 92%;" max-height="700" :tableType="tableType"
+            v-loading="loading" element-loading-text="数据加载中" element-loading-background="rgba(255, 255, 255, 0.85)">
+            <el-table-column fixed prop="section" label="时间">
+            </el-table-column>
+            <el-table-column prop="monday" label="星期一" width="220">
+            </el-table-column>
+            <el-table-column prop="tuesday" label="星期二" width="220">
+            </el-table-column>
+            <el-table-column prop="wednesday" label="星期三" width="220">
+            </el-table-column>
+            <el-table-column prop="thursday" label="星期四" width="220">
+            </el-table-column>
+            <el-table-column prop="friday" label="星期五" width="220">
+            </el-table-column>
+            <el-table-column prop="saturday" label="星期六" width="220">
+            </el-table-column>
+            <el-table-column prop="sunday" label="星期日" width="220">
+            </el-table-column>
+          </el-table>
+          <a href="./info.html"><img class="logo" src="./images/logo.png" alt="空课表，你生活的好帮手"></a>
+          <div class="copyright">&copy; Copyright 2017</div>
+        </div>
+      </transition>
+      <div v-if="error">
+        <el-button class="error-btn" type="primary" round @click="home">返回首页</el-button>
+        <div class="error-word">OPPS!<span>出错啦，好像少了点什么...</span></div>
+        <a href="./info.html"><img class="error-logo" src="./images/logo.png" alt="空课表，你生活的好帮手"></a>
+      </div>
+    </template>
+  </div>
+
+  <!-- <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script> -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui@2.0.7/lib/index.js"></script>
+  <script src="./js/courseTable.js"></script>
+</body>
+
+</html>

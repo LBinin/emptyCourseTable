@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <title>组织空课表 - 查找组织</title>
+  <link rel="shortcut icon" href="./images/favicon.ico">
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <link rel="stylesheet" href="./css/join.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <script>
+  </script>
+</head>
+
+<body>
+  <div id="join" v-loading="loading" element-loading-text="数据加载中" element-loading-background="rgba(255, 255, 255, 0.85)">
+    <!-- <div class="slogan">湘大组织空课表，你生活的好帮手</div> -->
+    <template>
+      <transition name="el-fade-in">
+        <div v-show="loaded">
+          <img class="logo" src="./images/logo.png" alt="空课表，你生活的好帮手">
+          <el-input v-model="idInput" placeholder="请输入组织ID"></el-input>
+          <el-button type="primary" class="search-btn" round @click="searchGroup">查找</el-button>
+
+          <el-dialog title="组织信息" :visible.sync="groupInfoVisible" v-model="groupInfo">
+            <span>组织名称: {{ groupInfo.gname }}</span>
+            <span>创建者: {{ groupInfo.founder }}</span>
+            <span>组织人数: {{ groupInfo.peoplenum }}</span>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="groupInfoVisible = false">取消</el-button>
+              <el-button type="primary" @click="joinGroup(groupInfo.groupno, groupInfo.gname)">加入</el-button>
+            </div>
+          </el-dialog>
+          <div class="copyright">&copy; Copyright 2017</div>
+        </div>
+      </transition>
+    </template>
+  </div>
+
+  <!-- <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script> -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui@2.0.7/lib/index.js"></script>
+  <script src="./js/join.js"></script>
+</body>
+
+</html>

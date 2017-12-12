@@ -1,0 +1,36 @@
+html,body {
+  margin: 0;
+  height: 100%;
+}
+body {
+  text-align: center;
+}
+.logo {
+  margin: 10% 0;
+  max-width: 416px;
+  width: 70%;
+}
+input {
+  max-width: 416px;
+  width: 90% !important;
+  margin: 15px 0;
+}
+button {
+  max-width: 416px;
+  width: 90% !important;
+  margin: 5% 0 !important;
+  box-shadow: 0 3px 10px rgba(66, 160, 254, .7);
+}
+#login {
+  min-height: 100%;
+}
+.copyright {
+  color: #999;
+  font-size: 15px;
+  text-align: center;
+  line-height: 50px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
