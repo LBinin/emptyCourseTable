@@ -33,4 +33,4 @@
 
 ### 建议&异常&疑问
 
-欢迎提 issue 联系我。
+欢迎提 [issue](https://github.com/LBinin/emptyCourseTable/issues) 联系我。
