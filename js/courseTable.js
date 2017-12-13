@@ -169,7 +169,6 @@ var courseTable = new Vue({
       console.log(oldTitle)
       document.title = oldTitle
       history.pushState({}, oldTitle, newUrl)
-      // console.log(location.search = "hahah")
     },
     json: function () {
       const peopleList = this.json.data['peopleList']

@@ -35,8 +35,6 @@ var info = new Vue({
     const _this = this
     axios.get(loginUrl, {
       params: {
-        // role: 'test',
-        // hash: 'test',
         sid: sessionStorage.getItem('sid'),
         password: sessionStorage.getItem('passwd')
       }

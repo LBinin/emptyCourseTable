@@ -1,11 +1,10 @@
 const loginUrl = "https://hexiaoling.cn/obk/dologin.php"
-// const loginUrl = "https://api.sky31.com/lib-new/edu_student_info.php"
 
 new Vue({
   el: '#login',
   data: {
-    sidInput: '2015551403',
-    passwdInput: 'lb905049701',
+    sidInput: '',
+    passwdInput: '',
     loading: false
   },
   methods: {
@@ -21,8 +20,6 @@ new Vue({
         const _this = this
         axios.get(loginUrl, {
           params: {
-            // role: 'test',
-            // hash: 'test',
             sid: sid,
             password: passwd
           }

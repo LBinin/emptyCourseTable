@@ -24,15 +24,25 @@
     <template>
       <transition name="el-fade-in">
         <div v-show="loaded">
-            <a href="./info.html"><img class="logo" src="./images/logo.png" alt="空课表，你生活的好帮手"></a>
+          <a href="./info.html">
+            <img class="logo" src="./images/logo.png" alt="空课表，你生活的好帮手">
+          </a>
           <el-input v-model="idInput" placeholder="请输入组织ID"></el-input>
           <el-button type="primary" class="search-btn" round @click="searchGroup">查找</el-button>
 
           <el-dialog title="组织信息" :visible.sync="groupInfoVisible" v-model="groupInfo">
-            <span>组织ID: <span class="group-info">{{ groupInfo.groupno }}</span></span>
-            <span>组织名称: <span class="group-info">{{ groupInfo.gname }}</span></span>
-            <span>创建者: <span class="group-info">{{ groupInfo.founder }}</span></span>
-            <span>组织人数: <span class="group-info">{{ groupInfo.peoplenum }}</span></span>
+            <span>组织ID:
+              <span class="group-info">{{ groupInfo.groupno }}</span>
+            </span>
+            <span>组织名称:
+              <span class="group-info">{{ groupInfo.gname }}</span>
+            </span>
+            <span>创建者:
+              <span class="group-info">{{ groupInfo.founder }}</span>
+            </span>
+            <span>组织人数:
+              <span class="group-info">{{ groupInfo.peoplenum }}</span>
+            </span>
             <div slot="footer" class="dialog-footer">
               <el-button @click="groupInfoVisible = false">取消</el-button>
               <el-button type="primary" @click="joinGroup(groupInfo.groupno, groupInfo.gname)">加入</el-button>

@@ -1,4 +1,3 @@
-// const loginUrl = "https://api.sky31.com/GongGong/login.php"
 const searchUrl = "https://hexiaoling.cn/obk/groupinfo.php"
 const joinGroupUrl = "https://hexiaoling.cn/obk/joingroup.php"
 
@@ -19,12 +18,12 @@ new Vue({
     this.loaded = true
 
     const request = getQuest()
-    if (typeof(request['id']) != 'undefined') {
+    if (typeof (request['id']) != 'undefined') {
       const _this = this
-      setTimeout(function() {
+      setTimeout(function () {
         _this.idInput = request['id']
         _this.searchGroup()
-      },300)
+      }, 300)
     }
   },
   methods: {
@@ -90,9 +89,6 @@ new Vue({
               if (data.code == 0) {
                 _this.alarm('加入成功', 'success')
                 _this.groupInfoVisible = false
-                // var userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
-            // userInfo.data.groupdata = data.data.groupinfo
-            // sessionStorage.setItem('userInfo', JSON.stringify(userInfo))
                 setTimeout(function () {
                   location.href = './info.html'
                 }, 1000)
