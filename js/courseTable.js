@@ -1,4 +1,4 @@
-var url = "http://www.hexiaoling.cn/obk/ecourse.php"
+const url = "https://www.hexiaoling.cn/obk/ecourse.php"
 
 function getInfo(id, week) {
   axios.get(url, {

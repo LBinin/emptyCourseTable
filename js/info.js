@@ -1,4 +1,4 @@
-const loginUrl = "http://hexiaoling.cn/obk/dologin.php"
+const loginUrl = "https://hexiaoling.cn/obk/dologin.php"
 
 var userInfo = sessionStorage.getItem('userInfo')
 
@@ -23,7 +23,7 @@ var info = new Vue({
     loaded: false,
     activeName: null,
     organizationInfo: userInfo.data.groupdata.map(function (item) {
-      item.imgSrc = 'http://tool.oschina.net/action/qrcode/generate?data=http%3A%2F%2Fitem.lbinin.com%2FemptyTable%2FcourseTable.html%3Fid%3D' + item.groupno + '&output=image%2Fjpeg&error=L&type=0&margin=0&size=4'
+      item.imgSrc = 'https://tool.oschina.net/action/qrcode/generate?data=http%3A%2F%2Fitem.lbinin.com%2FemptyTable%2FcourseTable.html%3Fid%3D' + item.groupno + '&output=image%2Fjpeg&error=L&type=0&margin=0&size=4'
       return item
     }),
   },
@@ -42,7 +42,7 @@ var info = new Vue({
         if (data.code == 0) {
           sessionStorage.setItem('userInfo', JSON.stringify(data))
           _this.organizationInfo = data.data.groupdata.map(function (item) {
-            item.imgSrc = 'http://tool.oschina.net/action/qrcode/generate?data=http%3A%2F%2Fitem.lbinin.com%2FemptyTable%2FcourseTable.html%3Fid%3D' + item.groupno + '&output=image%2Fjpeg&error=L&type=0&margin=0&size=4'
+            item.imgSrc = 'https://tool.oschina.net/action/qrcode/generate?data=http%3A%2F%2Fitem.lbinin.com%2FemptyTable%2FcourseTable.html%3Fid%3D' + item.groupno + '&output=image%2Fjpeg&error=L&type=0&margin=0&size=4'
             return item
           })
         } else {

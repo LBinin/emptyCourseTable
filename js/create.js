@@ -1,4 +1,4 @@
-const createUrl = "http://hexiaoling.cn/obk/creategroup.php"
+const createUrl = "https://hexiaoling.cn/obk/creategroup.php"
 
 new Vue({
   el: '#create',

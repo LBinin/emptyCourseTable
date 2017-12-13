@@ -1,4 +1,4 @@
-const loginUrl = "http://hexiaoling.cn/obk/dologin.php"
+const loginUrl = "https://hexiaoling.cn/obk/dologin.php"
 // const loginUrl = "https://api.sky31.com/lib-new/edu_student_info.php"
 
 new Vue({

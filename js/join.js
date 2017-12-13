@@ -1,6 +1,6 @@
 // const loginUrl = "https://api.sky31.com/GongGong/login.php"
-const searchUrl = "http://hexiaoling.cn/obk/groupinfo.php"
-const joinGroupUrl = "http://hexiaoling.cn/obk/joingroup.php"
+const searchUrl = "https://hexiaoling.cn/obk/groupinfo.php"
+const joinGroupUrl = "https://hexiaoling.cn/obk/joingroup.php"
 
 if (sessionStorage.getItem('userInfo') == null) {
   location.href = './index.html'
