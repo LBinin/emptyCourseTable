@@ -47,10 +47,10 @@
                 <span>我创建的组织</span>
               </div>
               <el-collapse v-model="activeName" accordion>
-                <div v-if="organizationInfo.length <= 0">
+                <div v-if="myCreateGroup.length <= 0">
                   <div class="none-tip">您当前无创建任何组织</div>
                 </div>
-                <el-collapse-item v-for="item in organizationInfo" :key="item.groupno" :title="item.gname" :name="item.groupno">
+                <el-collapse-item v-for="item in myCreateGroup" :key="item.groupno" :title="item.gname" :name="item.groupno">
                   <div>组织编号: <span style="font-weight:bold;font-size:15px;">{{ item.groupno }}</span></div>
                   <div>当前人数: <span style="font-weight:bold;font-size:15px;">{{ item.peoplenum }}</span></div>
                   <!-- <div>二维码分享: </div> -->

@@ -22,7 +22,11 @@ var info = new Vue({
     },
     loaded: false,
     activeName: null,
-    organizationInfo: userInfo.data.groupdata.map(function (item) {
+    organizationInfo: userInfo.data.joinedgroupdata.map(function (item) {
+      item.imgSrc = 'http://qr.liantu.com/api.php?text=https://item.lbinin.com/emptyTable/courseTable.html?id=' + item.groupno
+      return item
+    }),
+    myCreateGroup: userInfo.data.mygroupdata.map(function (item) {
       item.imgSrc = 'http://qr.liantu.com/api.php?text=https://item.lbinin.com/emptyTable/courseTable.html?id=' + item.groupno
       return item
     }),
@@ -41,7 +45,11 @@ var info = new Vue({
         const data = response.data
         if (data.code == 0) {
           sessionStorage.setItem('userInfo', JSON.stringify(data))
-          _this.organizationInfo = data.data.groupdata.map(function (item) {
+          _this.organizationInfo = data.data.joinedgroupdata.map(function (item) {
+            item.imgSrc = 'http://qr.liantu.com/api.php?text=https://item.lbinin.com/emptyTable/courseTable.html?id=' + item.groupno
+            return item
+          })
+          _this.myCreateGroup = data.data.mygroupdata.map(function (item) {
             item.imgSrc = 'http://qr.liantu.com/api.php?text=https://item.lbinin.com/emptyTable/courseTable.html?id=' + item.groupno
             return item
           })
