@@ -19,6 +19,7 @@
         <div v-show="loaded">
           <div class="title">
             <div class="group-name">软件结构OBK课表Plus小组空课表</div>
+            <el-button v-if="joined" type="primary" class="join-btn" round @click="join">加入该组织</el-button>
             组织编号: <span>{{ groupID }}</span>
             当前人数: <span>{{ totalPerson }}</span>
           </div>
@@ -62,7 +63,7 @@
       </transition>
       <div v-if="error">
         <el-button class="error-btn" type="primary" round @click="home">返回首页</el-button>
-        <div class="error-word">OPPS!<span>出错啦，好像少了点什么...</span></div>
+        <div class="error-word">OPPS!<span>{{ errorMsg }}</span></div>
         <a href="./info.html"><img class="error-logo" src="./images/logo.png" alt="空课表，你生活的好帮手"></a>
       </div>
     </template>

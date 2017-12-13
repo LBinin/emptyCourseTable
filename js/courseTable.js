@@ -11,18 +11,23 @@ function getInfo(id, week) {
   })
     .then(function (response) {
       const data = response.data
-      courseTable.loading = false
-      setTimeout(function () {
-        courseTable.loaded = true
-      }, 200)
+
       if (data.code == 0) {
         courseTable.json = data
+        courseTable.loading = false
+        setTimeout(function () {
+          courseTable.loaded = true
+        }, 200)
       } else if (data.code == 1) {
         // 用户信息获取失败
         courseTable.alarm('用户信息获取失败，请刷新重试', 'warning')
       } else if (data.code == 2) {
         // 课表获取失败
         courseTable.alarm('课表获取失败，请刷新重试', 'warning')
+      } else if (data.code == 4) {
+        courseTable.alarm('没有找到该组织，请确认后重试', 'warning')
+        courseTable.error = true
+        courseTable.errorMsg = '出错啦，该组织被外星人带走了!'
       }
     })
     .catch(function (error) {
@@ -59,7 +64,9 @@ var courseTable = new Vue({
     loading: false,
     loaded: false,
     request: [],
-    error: false
+    error: false,
+    joined: false,
+    errorMsg: ''
   },
   created: function () {
     // 获取参数内容
@@ -72,6 +79,7 @@ var courseTable = new Vue({
     if (typeof (request['id']) == 'undefined' || parseInt(request['id']) < 0) {
       this.alarm('参数错误，请检查链接参数', 'error')
       this.error = true
+      this.errorMsg = '出错啦，好像少了点什么...'
       return
     }
 
@@ -142,6 +150,9 @@ var courseTable = new Vue({
     },
     home: function () {
       location.href = './info.html'
+    },
+    join: function() {
+      location.href = './join.html?id=' + this.groupID
     }
   },
   watch: {
@@ -162,8 +173,18 @@ var courseTable = new Vue({
     },
     json: function () {
       const peopleList = this.json.data['peopleList']
-      this.totalPerson = peopleList.length
-      this.members = peopleList.length == 0 ? "无" : peopleList.join(', ')
+      if (peopleList.length == 0) {
+        this.joined = true
+        return
+      }
+      this.totalPerson = peopleList.namelist.length
+      this.members = peopleList.namelist.length == 0 ? "无" : peopleList.namelist.join(', ')
+      if (sessionStorage.getItem('sid') == null || peopleList.sidlist.indexOf(String(sessionStorage.getItem('sid'))) == -1) {
+        this.joined = true
+      } else {
+        this.joined = false
+      }
+
       this.showInfo(this.tableType)
     }
   }

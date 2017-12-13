@@ -40,10 +40,16 @@ html, body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.title span {
+.title > span {
   font-size: 18px;
   font-weight: bold;
   color: #20a0ff;
+}
+.join-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 8px 15px !important;
+  font-size: 14px;
 }
 .members {
   color: #555;
@@ -85,7 +91,7 @@ html, body {
 .error-word span {
   display: block;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
