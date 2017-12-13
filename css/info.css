@@ -25,19 +25,17 @@ body {
   font-size: 15px;
   color: #666;
 }
+.el-collapse-item__content {
+  color: #606266
+}
 .none-tip {
   font-size: 14px;
   line-height: 70px;
   text-align: center;
   color: #555;
 }
-.create-btn {
-  width: 45%;
-  margin: 25px auto 20px;
-}
-.join-btn {
-  width: 45%;
-  float: right;
+.create-btn, .join-btn {
+  width: 100%;
   margin: 25px auto 20px;
 }
 .qr-code {

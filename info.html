@@ -43,12 +43,28 @@
             </div>
           </el-card>
           <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>我创建的组织</span>
+              </div>
+              <el-collapse v-model="activeName" accordion>
+                <div v-if="organizationInfo.length <= 0">
+                  <div class="none-tip">您当前无创建任何组织</div>
+                </div>
+                <el-collapse-item v-for="item in organizationInfo" :key="item.groupno" :title="item.gname" :name="item.groupno">
+                  <div>组织编号: <span style="font-weight:bold;font-size:15px;">{{ item.groupno }}</span></div>
+                  <div>当前人数: <span style="font-weight:bold;font-size:15px;">{{ item.peoplenum }}</span></div>
+                  <!-- <div>二维码分享: </div> -->
+                  <el-button type="primary" class="look-up" round @click="enterTable(item.groupno)">查看空课表</el-button>
+                  <img :src="item.imgSrc" :alt="item.gname" class="qr-code">
+                  
+                  <div class="qrcode-tip">分享二维码发布组织信息</div>
+                </el-collapse-item>
+                <el-button type="primary" class="create-btn" round @click="createGroup">创建组织</el-button>
+              </el-collapse>
+            </el-card>
+          <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <span>组织信息</span>
-            </div>
-            <div v-for="o in 4" :key="o" class="text item2">
-              <!-- <span>{{ userInfo.sid }}</span> -->
-
+              <span>我加入的组织</span>
             </div>
             <el-collapse v-model="activeName" accordion>
               <div v-if="organizationInfo.length <= 0">
@@ -64,17 +80,7 @@
                 
                 <div class="qrcode-tip">分享二维码发布组织信息</div>
               </el-collapse-item>
-              <el-button type="primary" class="create-btn" round @click="createGroup">创建组织</el-button>
               <el-button type="primary" class="join-btn" round @click="joinGroup">加入组织</el-button>
-              <!-- <el-collapse-item title="软件结构OBK课表Plus小组空课表" name="2">
-                  <el-button type="primary" class="look-up" round>查看空课表</el-button>
-                  <div>组织编号: 2</div>
-                  <div>当前人数: 4</div>
-                  <div>二维码分享: </div>
-                  <img src="http://tool.oschina.net/action/qrcode/generate?data=http%3A%2F%2Fitem.lbinin.com%2FemptyTable%2FcourseTable.html%3Fid%3D2&output=image%2Fjpeg&error=L&type=0&margin=0&size=4"
-                    alt="软件结构OBK课表Plus小组空课表" class="qr-code">
-                  <div class="qrcode-tip">扫码加入组织空课表</div>
-                </el-collapse-item> -->
             </el-collapse>
           </el-card>
           <div class="copyright">&copy; Copyright 2017</div>

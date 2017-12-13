@@ -50,7 +50,7 @@ new Vue({
             // userInfo.data.groupdata = data.data.groupinfo
             // sessionStorage.setItem('userInfo', JSON.stringify(userInfo))
             setTimeout(function () {
-              location.href = './info.html'
+              // location.href = './info.html'
             }, 1000)
           } else {
             _this.alarm('加入组织失败，错误码: ' + data.code + '，失败原因: ' + data.msg, 'error')
