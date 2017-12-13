@@ -24,12 +24,18 @@ input {
 #join, #create {
   min-height: 100%;
 }
-.el-dialog__body span {
+.el-dialog__body > span {
   display: block;
   line-height: 30px;
   text-align: left;
+  font-size: 13px;
 }
-
+.group-info {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: 10px;
+}
 .el-message-box, .el-dialog {
   width: 90% !important;
   max-width: 420px;

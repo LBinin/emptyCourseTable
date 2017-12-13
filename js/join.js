@@ -17,6 +17,13 @@ new Vue({
   },
   mounted: function () {
     this.loaded = true
+
+    const request = getQuest()
+    const _this = this
+    setTimeout(function() {
+      _this.idInput = request['id']
+      _this.searchGroup()
+    },300)
   },
   methods: {
     searchGroup: function () {
@@ -103,3 +110,15 @@ new Vue({
     }
   }
 })
+
+function getQuest() {
+  var search = window.location.search
+  search = search.substr(1)
+  search = search.split('&')
+  var request = []
+  for (item in search) {
+    const temp = search[item].split('=')
+    request[temp[0]] = temp[1]
+  }
+  return request
+}
