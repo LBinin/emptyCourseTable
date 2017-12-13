@@ -19,11 +19,13 @@ new Vue({
     this.loaded = true
 
     const request = getQuest()
-    const _this = this
-    setTimeout(function() {
-      _this.idInput = request['id']
-      _this.searchGroup()
-    },300)
+    if (typeof(request['id']) != 'undefined') {
+      const _this = this
+      setTimeout(function() {
+        _this.idInput = request['id']
+        _this.searchGroup()
+      },300)
+    }
   },
   methods: {
     searchGroup: function () {
