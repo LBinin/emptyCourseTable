@@ -1,6 +1,7 @@
-const searchUrl = "https://hexiaoling.cn/obk/groupinfo.php"
-const joinGroupUrl = "https://hexiaoling.cn/obk/joingroup.php"
+const searchUrl = "https://hexiaoling.cn/obk/groupinfo.php"     // 查询组织信息api
+const joinGroupUrl = "https://hexiaoling.cn/obk/joingroup.php"  // 加入组织信息api
 
+// 检测登录
 if (sessionStorage.getItem('userInfo') == null) {
   location.href = './index.html'
 }
@@ -8,16 +9,17 @@ if (sessionStorage.getItem('userInfo') == null) {
 new Vue({
   el: '#join',
   data: {
-    idInput: '',
-    groupInfoVisible: false,
-    loading: false,
-    loaded: false,
-    groupInfo: {}
+    idInput: '',              // 组织id
+    groupInfoVisible: false,  // 组织信息弹框可见
+    loading: false,           // 加载中
+    loaded: false,            // 加载完毕
+    groupInfo: {}             // 组织信息
   },
   mounted: function () {
     this.loaded = true
-
+    // 获取query
     const request = getQuest()
+    // 如果有id参数则开始搜索
     if (typeof (request['id']) != 'undefined') {
       const _this = this
       setTimeout(function () {
@@ -27,6 +29,9 @@ new Vue({
     }
   },
   methods: {
+    /**
+     * 查询组织
+     */
     searchGroup: function () {
       const groupID = this.idInput
       if (groupID == "") {
@@ -63,12 +68,22 @@ new Vue({
           })
       }
     },
+    /**
+     * 消息提示
+     * @param {String} msg 提示消息
+     * @param {String} type 提示类型
+     */
     alarm: function (msg, type) {
       this.$message({
         message: msg,
         type: type
       })
     },
+    /**
+     * 加入组织
+     * @param {String} id 组织id
+     * @param {String} name 组织名称
+     */
     joinGroup: function (id, name) {
       const _this = this
       this.$confirm('确认加入 ' + name + ' ?')
@@ -108,7 +123,10 @@ new Vue({
     }
   }
 })
-
+/**
+ * 获取参数
+ * @return {String[]} request url解析后的的query数组
+ */
 function getQuest() {
   var search = window.location.search
   search = search.substr(1)

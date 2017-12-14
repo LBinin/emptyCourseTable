@@ -1,5 +1,6 @@
-const loginUrl = "https://hexiaoling.cn/obk/dologin.php"
+const loginUrl = "https://hexiaoling.cn/obk/dologin.php"  // 登录api
 
+// 获取用户信息，用于缓存显示
 var userInfo = sessionStorage.getItem('userInfo')
 
 if (userInfo == null) {
@@ -7,27 +8,24 @@ if (userInfo == null) {
 } else {
   userInfo = JSON.parse(userInfo)
 }
-// sessionStorage.removeItem('sid')
-// sessionStorage.removeItem('passwd')
-// sessionStorage.removeItem('userInfo')
 
 var info = new Vue({
   el: '#info',
   data: {
     userInfo: {
-      sid: sessionStorage.getItem('sid'),
-      name: userInfo.data.persondata.name,
-      college: userInfo.data.persondata.college,
-      klass: userInfo.data.persondata.class + '班',
+      sid: sessionStorage.getItem('sid'),           // 学号
+      name: userInfo.data.persondata.name,          // 姓名
+      college: userInfo.data.persondata.college,    // 专业
+      klass: userInfo.data.persondata.class + '班'  // 班级
     },
-    loaded: false,
-    activeName: null,
+    loaded: false,                                  // 加载完毕
+    activeName: null,                               // 需要打开的组织信息
     organizationInfo: userInfo.data.joinedgroupdata.map(function (item) {
-      item.imgSrc = 'http://qr.liantu.com/api.php?text=https://item.lbinin.com/emptyTable/courseTable.html?id=' + item.groupno
+      item.imgSrc = 'http://qr.liantu.com/api.php?text=https://item.lbinin.com/emptyTable/courseTable.html?id=' + item.groupno  // 组织二维码地址
       return item
     }),
     myCreateGroup: userInfo.data.mygroupdata.map(function (item) {
-      item.imgSrc = 'http://qr.liantu.com/api.php?text=https://item.lbinin.com/emptyTable/courseTable.html?id=' + item.groupno
+      item.imgSrc = 'http://qr.liantu.com/api.php?text=https://item.lbinin.com/emptyTable/courseTable.html?id=' + item.groupno  // 组织二维码地址
       return item
     }),
   },
@@ -60,18 +58,30 @@ var info = new Vue({
       })
   },
   methods: {
+     /**
+     * 退出登录
+     */
     logout: function () {
       sessionStorage.removeItem('sid')
       sessionStorage.removeItem('passwd')
       sessionStorage.removeItem('userInfo')
       location.href = './index.html'
     },
+     /**
+     * 进入空课表页面
+     */
     enterTable: function (id) {
       location.href = "./courseTable.html?id=" + id
     },
+     /**
+     * 创建组织
+     */
     createGroup: function () {
       location.href = "./create.html"
     },
+     /**
+     * 加入组织
+     */
     joinGroup: function () {
       location.href = "./join.html"
     }

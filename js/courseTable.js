@@ -1,5 +1,10 @@
-const url = "https://www.hexiaoling.cn/obk/ecourse.php"
+const url = "https://www.hexiaoling.cn/obk/ecourse.php" // 获取空课表接口
 
+/**
+ * 获取空课表信息
+ * @param {Int} id 组织id
+ * @param {Int} week 当前周
+ */
 function getInfo(id, week) {
   axios.get(url, {
     params: {
@@ -39,6 +44,10 @@ function getInfo(id, week) {
     })
 }
 
+/**
+ * 获取参数
+ * @return {String[]} request url解析后的的query数组
+ */
 function getQuest() {
   var search = window.location.search
   search = search.substr(1)
@@ -72,10 +81,14 @@ var courseTable = new Vue({
     // 获取参数内容
     const request = getQuest()
 
-    // 错误检测
+    /* 错误检测 */
+
+    // 如果当前周为null，默认第一周
     if (typeof (request['week']) == 'undefined') {
-      request['week'] = 1 // 默认第一周
+      request['week'] = 1
     }
+
+    // 如果没有id参数，则显示error信息
     if (typeof (request['id']) == 'undefined' || parseInt(request['id']) < 0) {
       this.alarm('参数错误，请检查链接参数', 'error')
       this.error = true
@@ -117,6 +130,10 @@ var courseTable = new Vue({
     })
   },
   methods: {
+    /**
+     * 显示空课表信息
+     * @param {String} style 显示样式: 空课表 / 有课表
+     */
     showInfo: function (style) {
       var info = [{
         section: '1-2节'
@@ -142,23 +159,42 @@ var courseTable = new Vue({
       }
       this.courseInfo = info
     },
+    /**
+     * 消息提示
+     * @param {String} msg 提示消息
+     * @param {String} type 提示类型
+     */
     alarm: function (msg, type) {
       this.$message({
         message: msg,
         type: type,
       })
     },
+    /**
+     * 返回首页
+     */
     home: function () {
       location.href = './info.html'
     },
-    join: function() {
+    /**
+     * 加入按钮操作
+     */
+    join: function () {
       location.href = './join.html?id=' + this.groupID
     }
   },
   watch: {
+    /**
+     * 课表样式改变时重新渲染课表
+     * @param {String} type 显示样式: 空课表 / 有课表
+     */
     tableType: function (type) {
       this.showInfo(type)
     },
+    /**
+     * 当前周改变时重新渲染课表
+     * @param {Int} curr 需要显示的周数
+     */
     currWeek: function (curr) {
       this.loading = true
       getInfo(this.groupID, curr)
@@ -170,6 +206,9 @@ var courseTable = new Vue({
       document.title = oldTitle
       history.pushState({}, oldTitle, newUrl)
     },
+    /**
+     * json数据发生改变，更新界面
+     */
     json: function () {
       const peopleList = this.json.data['peopleList']
       if (peopleList.length == 0) {
@@ -188,18 +227,3 @@ var courseTable = new Vue({
     }
   }
 })
-
-var store = {
-  debug: true,
-  state: {
-    message: 'Hello!'
-  },
-  setMessageAction(newValue) {
-    if (this.debug) console.log('setMessageAction triggered with', newValue)
-    this.state.message = newValue
-  },
-  clearMessageAction() {
-    if (this.debug) console.log('clearMessageAction triggered')
-    this.state.message = ''
-  }
-}
